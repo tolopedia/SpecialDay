@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>your Day!  </title>
+
+  <link rel="stylesheet" href="styles/flexbox-center-container.css" media="all">
+  <link rel="stylesheet" href="styles/system-fonts.css" media="all">
+  <link rel="stylesheet" href="styles/style.css" media="all">
+</head>
+
+<body>
+  <canvas id=c></canvas>
+  <canvas id="confetti"></canvas>
+  <div class="container" id="count">
+    
+    <h1 id="head">Your Special Day!</h1>
+    <h4 id="clock"></h4>
+    <h2 id="ucapan"></h2>
+    <ul>
+      <li><span id="day"></span>days</li>
+      <li><span id="hour"></span>hours</li>
+      <li><span id="minute"></span>minutes</li>
+      <li><span id="second"></span>seconds</li>
+    </ul>
+  </div>
+  <div id="merrywrap" class="merrywrap">
+    <canvas id="snowfall"></canvas>
+    <div class="giftbox">
+      <div class="cover">
+        <div></div>
+      </div>
+      <div class="box"></div>
+    </div>
+
+    <script>
+      function clock(){
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var midday;
+
+        hours = updateTime(hours);
+        minutes = updateTime(minutes);
+        seconds = updateTime(seconds);
+        var name = "Felia N";
+
+        midday = (hours >= 12) ? "." : ".";
+
+        document.getElementById("clock").innerHTML = midday;
+
+        var time = setTimeout(function(){
+          clock();
+        }, 1000);
+
+        if(hours < 12){
+          var ucapan = "Hallo Pesek!, " + "Selamat Pagi " + name;
+        }
+        if(hours >= 12 &&hours <= 15){
+          var ucapan = "Hallo Pesek!, " + "Selamat Siang " + name;
+        }
+        if(hours >= 15 &&hours <= 18){
+          var ucapan = "Hallo Pesek!, " + "Selamat Sore " + name;
+        }
+        if(hours >= 18 &&hours <= 24){
+          var ucapan = "Hallo Pesek!, " + "Selamat Malam " + name;
+        }
+        document.getElementById("ucapan").innerHTML = ucapan;
+        }
+
+        function updateTime(k){
+          if(k < 10){
+            return "0" + k
+          } else {
+            return k;
+          }
+        }
+      
+      clock();
+
+
+    </script>
+</body>
+<script src="scripts/confetti.min.js" charset="utf-8"></script>
+<script src="scripts/index.js" charset="utf-8"></script>
+
+</html>
